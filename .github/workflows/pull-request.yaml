@@ -1,14 +1,14 @@
-name: Release
+name: Pull Request
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
 jobs:
-  install-test-release:
+  install-test:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
+    timeout-minutes: 5
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -58,6 +58,3 @@ jobs:
 
     - name: Run Jest Unit Tests
       run: yarn test
-
-    - name: New release
-      run: NPM_TOKEN=${{ secrets.NPM_TOKEN }} GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} yarn release
