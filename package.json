@@ -14,7 +14,6 @@
     "src",
     "lib",
     "android",
-    "bin",
     "!lib/typescript/example",
     "!**/__tests__",
     "!**/__fixtures__",
@@ -33,7 +32,6 @@
     "format:ts": "prettier --write '**/*.ts{,x}'",
     "hack": "rimraf node_modules/@types/react-native/node_modules/@types",
     "patch": "patch-package",
-    "postinstall": "node ./bin/postInstall",
     "prepare": "npm-run-all patch hack",
     "release": "semantic-release",
     "commit": "git-cz"
@@ -94,7 +92,6 @@
     "react": "16.13.1",
     "react-native": "0.63.0",
     "semantic-release": "^17.1.1",
-    "solidarity": "^3.0.0",
     "typescript": "^3.9.6"
   },
   "peerDependencies": {
