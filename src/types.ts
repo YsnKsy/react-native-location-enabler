@@ -57,7 +57,7 @@ export interface LocationSettingsEnablerType {
    * If you want negligible power impact, but to still receive location updates when available,
    * then set priority to 'NO_POWER'.
    */
-  priorities: Priorities
+  PRIORITIES: Priorities
 
   /**
    * Checking if the user's device location is turned off.

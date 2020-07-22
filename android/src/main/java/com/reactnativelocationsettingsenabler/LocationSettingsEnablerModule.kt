@@ -39,7 +39,7 @@ class LocationSettingsEnablerModule(reactContext: ReactApplicationContext) : Rea
   private val REQUEST_TURN_DEVICE_LOCATION_ON = 29
   private val EVENT_NAME = "onChangeLocationSettings"
   private val context: ReactApplicationContext = reactContext
-  private var priority: Int = PRIORITY_NO_POWER
+  private var priority: Int = PRIORITY_BALANCED_POWER_ACCURACY
   private var alwaysShow: Boolean = false
   private var needBle: Boolean = false
 

@@ -23,26 +23,26 @@ npm install react-native-location-settings-enabler
 ## Usage
 
 ```js
-import LocationSettingsEnabler from "react-native-location-settings-enabler";
+import { PRIORITIES, addListener, checkSettings, requestResolutionSettings } from "react-native-location-settings-enabler";
 
 // Adds a listener to be invoked when location settings checked using
 // [checkSettings] or changed using [requestResolutionSettings]
-const listner = LocationSettingsEnabler.addListener(({ locationEnabled }) =>
+const listner = addListener(({ locationEnabled }) =>
     console.log(`Location are ${ locationEnabled ? 'enabled' : 'disabled' }`);
 );
 
 // Define configuration
 const config = {
-    priority: LocationSettingsEnabler.NO_POWER,
-    alwaysShow: false, // default false
-    needBle: false, // default false
+    priority: PRIORITIES.HIGH_ACCURACY, // default BALANCED_POWER_ACCURACY
+    alwaysShow: true, // default false
+    needBle: true, // default false
 };
 
 // Check if location is enabled or not
-LocationSettingsEnabler.checkSettings(config);
+checkSettings(config);
 
 // If location is disabled, prompt the user to turn on device location
-LocationSettingsEnabler.requestResolutionSettings(config);
+requestResolutionSettings(config);
 
 // ...
 // Removes this subscription

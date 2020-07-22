@@ -13,6 +13,6 @@ LocationSettingsEnabler.addListener = (listener: Listener, context?: any) =>
 LocationSettingsEnabler.once = (listener: Listener, context?: any) =>
   locationSettingsEnabler.once(EVENT_NAME, listener, context)
 
-LocationSettingsEnabler.priorities = LocationSettingsEnabler.getConstants()
+LocationSettingsEnabler.PRIORITIES = LocationSettingsEnabler.getConstants()
 
 export default LocationSettingsEnabler as LocationSettingsEnablerType

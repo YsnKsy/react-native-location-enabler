@@ -1,7 +1,7 @@
 jest.mock("react-native-location-settings-enabler")
 
 export default {
-  priorities: {
+  PRIORITIES: {
     HIGH_ACCURACY: 100,
     BALANCED_POWER_ACCURACY: 102,
     LOW_POWER: 104,

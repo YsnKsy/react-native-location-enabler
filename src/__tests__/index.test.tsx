@@ -38,9 +38,9 @@ describe("Test native module 'react-native-location-settings-enabler'", () => {
   })
 
   test("[ LocationSettingsEnabler.priorities ] is a valid priorities object", () => {
-    const priorities = LocationSettingsEnabler.priorities
-    expect(priorities).toBeTruthy()
-    expect(priorities).toEqual({
+    const PRIORITIES = LocationSettingsEnabler.PRIORITIES
+    expect(PRIORITIES).toBeTruthy()
+    expect(PRIORITIES).toEqual({
       HIGH_ACCURACY: 100,
       BALANCED_POWER_ACCURACY: 102,
       LOW_POWER: 104,
