@@ -49,6 +49,10 @@ listner.remove()
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
+## Code of Conduct
+
+See the [code of conduct guide](CODE_OF_CONDUCT.md).
+
 ## License
 
 See [MIT](LICENSE)
