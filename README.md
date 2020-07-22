@@ -35,7 +35,7 @@ const listner = addListener(({ locationEnabled }) =>
 const config = {
     priority: PRIORITIES.HIGH_ACCURACY, // default BALANCED_POWER_ACCURACY
     alwaysShow: true, // default false
-    needBle: true, // default false
+    needBle: false, // default false
 };
 
 // Check if location is enabled or not
