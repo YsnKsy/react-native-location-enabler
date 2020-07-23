@@ -17,7 +17,7 @@ This package makes it easy for an React Native App to ensure that the Android de
 ## Installation
 
 ```sh
-npm install react-native-location-settings-enabler
+yarn add react-native-location-settings-enabler
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ import { PRIORITIES, addListener, checkSettings, requestResolutionSettings } fro
 
 // Adds a listener to be invoked when location settings checked using
 // [checkSettings] or changed using [requestResolutionSettings]
-const listner = addListener(({ locationEnabled }) =>
+const listener = addListener(({ locationEnabled }) =>
     console.log(`Location are ${ locationEnabled ? 'enabled' : 'disabled' }`);
 );
 
@@ -46,8 +46,81 @@ requestResolutionSettings(config);
 
 // ...
 // Removes this subscription
-listner.remove()
+listener.remove();
 ```
+
+## API
+
+### Properties
+
+> `PRIORITIES`
+
+```js
+import { PRIORITIES } from "react-native-location-settings-enabler"
+
+const { HIGH_ACCURACY, BALANCED_POWER_ACCURACY, LOW_POWER, NO_POWER } = PRIORITIES
+```
+
+> Static object contain a list quality of service for location updates. If your application wants high accuracy location it should set prioprity to 'HIGH_ACCURACY'. If you want negligible power impact, but to still receive location updates when available, then set priority to 'NO_POWER'.
+
+---
+
+### Methods
+
+> ### `checkSettings({ priority, alwaysShow, needBle })`
+
+```js
+import { checkSettings } from "react-native-location-settings-enabler"
+
+checkSettings({
+  priority: PRIORITIES.HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
+  alwaysShow: true, // optional: default false
+  needBle: true, // optional: default false
+})
+```
+
+> Checking if the user's device location is turned off.
+
+---
+
+> ### `requestResolutionSettings({ priority, alwaysShow, needBle })`
+
+```js
+import { requestResolutionSettings } from "react-native-location-settings-enabler"
+
+requestResolutionSettings({
+  priority: PRIORITIES.HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
+  alwaysShow: true, // optional: default false
+  needBle: true, // optional: default false
+})
+```
+
+> Display an activity where they can turn location 'on' using a location request.
+
+---
+
+> ### `addListener(callback, context?)`
+
+```js
+import { addListener } from "react-native-location-settings-enabler"
+
+let listener = null
+
+function cb(result) {
+  const { locationEnabled } = result
+
+  console.log(`Location are ${locationEnabled ? "enabled" : "disabled"}`)
+
+  if (listener !== null) {
+    // remove listener when you finish
+    listener.remove()
+  }
+}
+
+listener = addListener(cb)
+```
+
+> Adds a listener to be invoked when onChangeLocationSettings are emitted. An optional calling context may be provided. The data arguments emitted will be passed to the listener function.
 
 ## Contributing
 
@@ -59,4 +132,4 @@ See the [code of conduct guide](CODE_OF_CONDUCT.md).
 
 ## License
 
-See [MIT](LICENSE)
+See the [MIT License](LICENSE)
