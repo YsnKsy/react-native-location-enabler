@@ -49,6 +49,28 @@ requestResolutionSettings(config);
 listener.remove();
 ```
 
+## Full usage example app
+
+Clone the repo
+```sh
+git clone https://github.com/YsnKsy/react-native-location-settings-enabler.git && cd react-native-location-settings-enabler
+```
+
+Install npm dependencies
+```sh
+yarn example
+```
+
+Start Metro ( javascript bundler )
+```sh
+yarn example start
+```
+
+Install and launch example app on the device
+```sh
+yarn example android
+```
+
 ## API
 
 ### Properties
@@ -61,7 +83,7 @@ import { PRIORITIES } from "react-native-location-settings-enabler"
 const { HIGH_ACCURACY, BALANCED_POWER_ACCURACY, LOW_POWER, NO_POWER } = PRIORITIES
 ```
 
-> Static object contain a list quality of service for location updates. If your application wants high accuracy location it should set prioprity to 'HIGH_ACCURACY'. If you want negligible power impact, but to still receive location updates when available, then set priority to 'NO_POWER'.
+Static object contain a list quality of service for location updates. If your application wants high accuracy location it should set prioprity to 'HIGH_ACCURACY'. If you want negligible power impact, but to still receive location updates when available, then set priority to 'NO_POWER'.
 
 ---
 
@@ -79,7 +101,7 @@ checkSettings({
 })
 ```
 
-> Checking if the user's device location is turned off.
+Checking if the user's device location is turned on / off.
 
 ---
 
@@ -95,7 +117,7 @@ requestResolutionSettings({
 })
 ```
 
-> Display an activity where they can turn location 'on' using a location request.
+Display an activity where they can turn location 'on' using a location request.
 
 ---
 
@@ -120,11 +142,13 @@ function cb(result) {
 listener = addListener(cb)
 ```
 
-> Adds a listener to be invoked when onChangeLocationSettings are emitted. An optional calling context may be provided. The data arguments emitted will be passed to the listener function.
+Adds a listener to be invoked when onChangeLocationSettings are emitted. An optional calling context may be provided. The data arguments emitted will be passed to the listener function.
+
+---
 
 ## Contributing
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+Press the ***``STAR``*** button 😀 and see the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
 ## Code of Conduct
 
