@@ -2,14 +2,21 @@ import * as React from "react"
 import { StyleSheet, View, Text, Button } from "react-native"
 import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
-const { HIGH_ACCURACY } = LocationSettingsEnabler.PRIORITIES
+const { PRIORITIES, useCheckSettings, requestResolutionSettings } = LocationSettingsEnabler
+const { HIGH_ACCURACY } = PRIORITIES
 
-const LocationStatus = (props: { enabled: boolean | null }) => (
+const config = {
+  priority: HIGH_ACCURACY,
+  alwaysShow: true,
+  needBle: true,
+}
+
+const LocationStatus = (props: { enabled: boolean | undefined }) => (
   <Text style={styles.status}>
     Location : [{" "}
-    {props.enabled !== null && props.enabled ? (
+    {props.enabled !== undefined && props.enabled ? (
       <Text style={styles.enabled}>Enabled</Text>
-    ) : props.enabled !== null && !props.enabled ? (
+    ) : props.enabled !== undefined && !props.enabled ? (
       <Text style={styles.disabled}>Disabled</Text>
     ) : (
       <Text style={styles.undefined}>Undefined</Text>
@@ -18,51 +25,19 @@ const LocationStatus = (props: { enabled: boolean | null }) => (
   </Text>
 )
 
-const CheckSettingsBtn = (props: { onPress: any }) => (
-  <Button color="green" title="Check Location Settings" onPress={props.onPress} />
-)
-
 const RequestResolutionSettingsBtn = (props: { onPress: any }) => (
   <Button color="red" title="Request Resolution Location Settings" onPress={props.onPress} />
 )
 
-const checkSettings = () =>
-  LocationSettingsEnabler.checkSettings({
-    priority: HIGH_ACCURACY,
-    alwaysShow: true,
-    needBle: true,
-  })
-
-const requestResolutionSettings = () =>
-  LocationSettingsEnabler.requestResolutionSettings({
-    priority: HIGH_ACCURACY,
-    alwaysShow: true,
-    needBle: true,
-  })
+const requestResolution = () => requestResolutionSettings(config)
 
 const App: React.FunctionComponent<unknown> = () => {
-  const [enabled, setEnabled] = React.useState<boolean | null>(null)
-
-  React.useEffect(() => {
-    // componentDidMount : Start listner subscription
-    const listner = LocationSettingsEnabler.addListener(({ locationEnabled }) =>
-      setEnabled(locationEnabled),
-    )
-
-    // When user enable location then remove listner subscription
-    enabled && listner.remove()
-
-    // componentWillUnmount : Remove listner subscription
-    return () => listner.remove()
-  }, [enabled])
+  const enabled = useCheckSettings(config)
 
   return (
     <View style={styles.container}>
       <LocationStatus enabled={enabled} />
-      {enabled === null && <CheckSettingsBtn onPress={checkSettings} />}
-      {!enabled && enabled !== null && (
-        <RequestResolutionSettingsBtn onPress={requestResolutionSettings} />
-      )}
+      {!enabled && <RequestResolutionSettingsBtn onPress={requestResolution} />}
     </View>
   )
 }

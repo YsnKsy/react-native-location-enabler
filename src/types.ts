@@ -29,7 +29,7 @@ export type Priorities = {
   NO_POWER: Priority.NO_POWER
 }
 
-export type Options = {
+export type Config = {
   priority?: Priority
 
   /**
@@ -50,6 +50,8 @@ export type Options = {
 
 export type Listener = (args: { locationEnabled: boolean }) => void
 
+export type LocationStatus = boolean | undefined
+
 export interface LocationSettingsEnablerType {
   /**
    * Static object contain a list quality of service for location updates.
@@ -60,18 +62,36 @@ export interface LocationSettingsEnablerType {
   PRIORITIES: Priorities
 
   /**
-   * Checking if the user's device location is turned off.
+   * Hooks let you check if the user's device location is turned off / on.
    *
-   * @param priority -
+   * @param config -
+   * @param initial? -
+   * @returns boolean | false - location status
    */
-  checkSettings(options: Options): void
+  useCheckSettings(config: Config, initial?: LocationStatus): LocationStatus
 
   /**
-   * Display an activity where they can turn location 'on' using a location request.
+   * Hooks let display an activity where the user's can turn location 'on'
    *
-   * @param priority -
+   * @param config -
+   * @param initial? -
+   * @returns boolean | false - location status
    */
-  requestResolutionSettings(options: Options): void
+  useRequestResolutionSettings(config: Config, initial?: LocationStatus): LocationStatus
+
+  /**
+   * Checking if the user's device location is turned off.
+   *
+   * @param config -
+   */
+  checkSettings(config: Config): void
+
+  /**
+   * Display an activity where the user's can turn location 'on'.
+   *
+   * @param config -
+   */
+  requestResolutionSettings(config: Config): void
 
   /**
    * Adds a listener to be invoked when onChangeLocationSettings are emitted.

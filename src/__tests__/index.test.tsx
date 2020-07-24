@@ -12,11 +12,28 @@ describe("Test native module 'react-native-location-settings-enabler'", () => {
     needBle: false,
   }
 
+  test("[ LocationSettingsEnabler.useCheckSettings ] is a valid hook method", () => {
+    const useCheckSettings = LocationSettingsEnabler.useCheckSettings
+    expect(useCheckSettings).toBeTruthy()
+    expect(useCheckSettings(options)).toBe(true || false)
+  })
+
+  test("[ LocationSettingsEnabler.useRequestResolutionSettings ] is a valid hook method", () => {
+    const useRequestResolutionSettings = LocationSettingsEnabler.useRequestResolutionSettings
+    expect(useRequestResolutionSettings).toBeTruthy()
+    expect(useRequestResolutionSettings(options)).toBe(true || false)
+  })
+
+  test("[ LocationSettingsEnabler.useCheckSettings ] is a valid hook method", () => {
+    const addListener = LocationSettingsEnabler.addListener
+    expect(addListener).toBeTruthy()
+    expect(addListener(listner).remove).toBeTruthy()
+  })
+
   test("[ LocationSettingsEnabler.addListener ] is a valid function subscriber", () => {
     const addListener = LocationSettingsEnabler.addListener
     expect(addListener).toBeTruthy()
     expect(addListener(listner).remove).toBeTruthy()
-    // done()
   })
 
   test("[ LocationSettingsEnabler.once ] is a valid function subscriber", () => {
@@ -37,7 +54,7 @@ describe("Test native module 'react-native-location-settings-enabler'", () => {
     expect(requestResolutionSettings(options)).toBeUndefined()
   })
 
-  test("[ LocationSettingsEnabler.priorities ] is a valid priorities object", () => {
+  test("[ LocationSettingsEnabler.PRIORITIES ] is a valid priorities object", () => {
     const PRIORITIES = LocationSettingsEnabler.PRIORITIES
     expect(PRIORITIES).toBeTruthy()
     expect(PRIORITIES).toEqual({
