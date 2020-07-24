@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react"
 import { NativeModules, NativeEventEmitter } from "react-native"
-import type { LocationSettingsEnablerType, Listener, Config, LocationStatus } from "./types"
+import type {
+  LocationSettingsEnablerType,
+  Listener,
+  Config,
+  LocationStatus,
+  LocationSettings,
+} from "./types"
 
 const { LocationSettingsEnabler } = NativeModules
 const EVENT_NAME = "onChangeLocationSettings"
@@ -16,10 +22,10 @@ LocationSettingsEnabler.once = (listener: Listener, context?: any) =>
 
 LocationSettingsEnabler.PRIORITIES = LocationSettingsEnabler.getConstants()
 
-LocationSettingsEnabler.useCheckSettings = (
+LocationSettingsEnabler.useLocationSettings = (
   settings: Config,
   initial?: LocationStatus,
-): LocationStatus => {
+): LocationSettings => {
   const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined)
   useEffect(() => {
     const listner = LocationSettingsEnabler.addListener(({ locationEnabled }) =>
@@ -29,23 +35,7 @@ LocationSettingsEnabler.useCheckSettings = (
     if (enabled) listner.remove()
     return () => listner.remove()
   }, [enabled])
-  return enabled
-}
-
-LocationSettingsEnabler.useRequestResolutionSettings = (
-  settings: Config,
-  initial?: LocationStatus,
-): LocationStatus => {
-  const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined)
-  useEffect(() => {
-    const listner = LocationSettingsEnabler.addListener(({ locationEnabled }) =>
-      setEnabled(locationEnabled),
-    )
-    LocationSettingsEnabler.requestResolutionSettings(settings)
-    if (enabled) listner.remove()
-    return () => listner.remove()
-  }, [enabled])
-  return enabled
+  return [enabled, () => LocationSettingsEnabler.requestResolutionSettings(settings)]
 }
 
 export default LocationSettingsEnabler as LocationSettingsEnablerType

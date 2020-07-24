@@ -12,22 +12,13 @@ describe("Test native module 'react-native-location-settings-enabler'", () => {
     needBle: false,
   }
 
-  test("[ LocationSettingsEnabler.useCheckSettings ] is a valid hook method", () => {
-    const useCheckSettings = LocationSettingsEnabler.useCheckSettings
-    expect(useCheckSettings).toBeTruthy()
-    expect(useCheckSettings(options)).toBe(true || false)
-  })
-
-  test("[ LocationSettingsEnabler.useRequestResolutionSettings ] is a valid hook method", () => {
-    const useRequestResolutionSettings = LocationSettingsEnabler.useRequestResolutionSettings
-    expect(useRequestResolutionSettings).toBeTruthy()
-    expect(useRequestResolutionSettings(options)).toBe(true || false)
-  })
-
-  test("[ LocationSettingsEnabler.useCheckSettings ] is a valid hook method", () => {
-    const addListener = LocationSettingsEnabler.addListener
-    expect(addListener).toBeTruthy()
-    expect(addListener(listner).remove).toBeTruthy()
+  test("[ LocationSettingsEnabler.useLocationSettings ] is a valid hook method", () => {
+    const useLocationSettings = LocationSettingsEnabler.useLocationSettings
+    expect(useLocationSettings).toBeTruthy()
+    const [enabled, requestResolution] = useLocationSettings(options)
+    expect(enabled).toBe(Boolean)
+    expect(requestResolution).toBeTruthy()
+    expect(requestResolution()).toBeUndefined()
   })
 
   test("[ LocationSettingsEnabler.addListener ] is a valid function subscriber", () => {

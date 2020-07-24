@@ -52,6 +52,8 @@ export type Listener = (args: { locationEnabled: boolean }) => void
 
 export type LocationStatus = boolean | undefined
 
+export type LocationSettings = [LocationStatus, () => void]
+
 export interface LocationSettingsEnablerType {
   /**
    * Static object contain a list quality of service for location updates.
@@ -62,22 +64,13 @@ export interface LocationSettingsEnablerType {
   PRIORITIES: Priorities
 
   /**
-   * Hooks let you check if the user's device location is turned off / on.
+   * Hook let you check the user's device location status 'on' / 'off' and method let you display an activity where they can turn location 'on'.
    *
    * @param config -
    * @param initial? -
-   * @returns boolean | false - location status
+   * @returns LocationSettings - location status
    */
-  useCheckSettings(config: Config, initial?: LocationStatus): LocationStatus
-
-  /**
-   * Hooks let display an activity where the user's can turn location 'on'
-   *
-   * @param config -
-   * @param initial? -
-   * @returns boolean | false - location status
-   */
-  useRequestResolutionSettings(config: Config, initial?: LocationStatus): LocationStatus
+  useLocationSettings(config: Config, initial?: LocationStatus): LocationSettings
 
   /**
    * Checking if the user's device location is turned off.

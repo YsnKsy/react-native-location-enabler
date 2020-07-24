@@ -31,25 +31,28 @@ yarn add react-native-location-settings-enabler
 ```js
 import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
-const { PRIORITIES, useCheckSettings, requestResolutionSettings } = LocationSettingsEnabler
-const { HIGH_ACCURACY } = PRIORITIES
+const {
+  PRIORITIES: { HIGH_ACCURACY },
+  useLocationSettings,
+} = LocationSettingsEnabler
 
-// Define configuration
-const config = {
-  priority: HIGH_ACCURACY, // default BALANCED_POWER_ACCURACY
-  alwaysShow: true, // default false
-  needBle: false, // default false
-}
-
-const req = () => requestResolutionSettings(config)
-
-// React Native App Component
+// React Component
 const App = () => {
-  // use hook to check location status
-  const enabled = useCheckSettings(config)
+  const [enabled, requestResolution] = useLocationSettings(
+    {
+      priority: HIGH_ACCURACY, // default BALANCED_POWER_ACCURACY
+      alwaysShow: true, // default false
+      needBle: true, // default false
+    },
+    false /* optional: default undefined */,
+  )
 
   return (
-    <View>{!enabled && <Button onPress={req} title="Request Resolution Location Settings" />}</View>
+    <View>
+      {!enabled && (
+        <Button onPress={requestResolution} title="Request Resolution Location Settings" />
+      )}
+    </View>
   )
 }
 ```
@@ -61,8 +64,11 @@ const App = () => {
 ```js
 import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
-const { PRIORITIES, checkSettings, requestResolutionSettings } = LocationSettingsEnabler
-const { HIGH_ACCURACY } = PRIORITIES
+const {
+  PRIORITIES: { HIGH_ACCURACY },
+  checkSettings,
+  requestResolutionSettings
+} = LocationSettingsEnabler
 
 // Adds a listener to be invoked when location settings checked using
 // [checkSettings] or changed using [requestResolutionSettings]
@@ -141,45 +147,31 @@ Static object contain a list quality of service for location updates. If your ap
 
 ### Methods
 
-> ### `useCheckSettings({ priority, alwaysShow, needBle }, initialSatus?)`
+> ### `useLocationSettings({ priority, alwaysShow, needBle }, initialStatus?)`
 
 ```js
 import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
-const { useCheckSettings, PRIORITIES } = LocationSettingsEnabler
-const { HIGH_ACCURACY } = PRIORITIES
+const {
+  useLocationSettings,
+  PRIORITIES: { HIGH_ACCURACY },
+} = LocationSettingsEnabler
 
-const enabled = useCheckSettings({
+const [enabled, requestResolution] = useLocationSettings({
   priority: HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
   alwaysShow: true, // optional: default false
   needBle: true, // optional: default false
 })
 
 console.log(`Location are ${enabled ? "enabled" : "disabled"}`)
+
+// ...
+if (!enabled) {
+  requestResolution()
+}
 ```
 
-Hook let you check if the user's device location is turned off / on.
-
----
-
-> ### `useRequestResolutionSettings({ priority, alwaysShow, needBle }, initialSatus?)`
-
-```js
-import LocationSettingsEnabler from "react-native-location-settings-enabler"
-
-const { useRequestResolutionSettings, PRIORITIES } = LocationSettingsEnabler
-const { HIGH_ACCURACY } = PRIORITIES
-
-const enabled = useRequestResolutionSettings({
-  priority: HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
-  alwaysShow: true, // optional: default false
-  needBle: true, // optional: default false
-})
-
-console.log(`Location are ${enabled ? "enabled" : "disabled"}`)
-```
-
-Hooks let display an activity where the user's can turn location 'on', only if location is already turned 'off'.
+Hook let you check the user's device location status 'on' / 'off' and method let you display an activity where they can turn location 'on'.
 
 ---
 
@@ -188,8 +180,10 @@ Hooks let display an activity where the user's can turn location 'on', only if l
 ```js
 import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
-const { checkSettings, PRIORITIES } = LocationSettingsEnabler
-const { HIGH_ACCURACY } = PRIORITIES
+const {
+  checkSettings,
+  PRIORITIES: { HIGH_ACCURACY },
+} = LocationSettingsEnabler
 
 checkSettings({
   priority: HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
@@ -207,8 +201,10 @@ Checking if the user's device location is turned on / off.
 ```js
 import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
-const { requestResolutionSettings, PRIORITIES } = LocationSettingsEnabler
-const { HIGH_ACCURACY } = PRIORITIES
+const {
+  requestResolutionSettings,
+  PRIORITIES: { HIGH_ACCURACY },
+} = LocationSettingsEnabler
 
 requestResolutionSettings({
   priority: HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
