@@ -68,6 +68,7 @@ import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
 const {
   PRIORITIES: { HIGH_ACCURACY },
+  addListener,
   checkSettings,
   requestResolutionSettings
 } = LocationSettingsEnabler
