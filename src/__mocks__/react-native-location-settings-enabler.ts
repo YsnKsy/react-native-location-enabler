@@ -7,6 +7,8 @@ export default {
     LOW_POWER: 104,
     NO_POWER: 105,
   },
+  useCheckSettings: jest.fn(() => true || false),
+  useRequestResolutionSettings: jest.fn(() => true || false),
   checkSettings: jest.fn(),
   requestResolutionSettings: jest.fn(),
   addListener: jest.fn(() => {
