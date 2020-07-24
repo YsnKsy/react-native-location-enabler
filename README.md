@@ -124,9 +124,9 @@ Install and launch example app on the device
 yarn example android
 ```
 
-<img src="example/step-1.png" width="33%" />
-<img src="example/step-2.png" width="33%" />
-<img src="example/step-3.png" width="33%" />
+<p align="center">
+  <img src="example/step-1.png" width="30%" style="margin: 5px;" /><img src="example/step-2.png" width="30%" style="margin: 5px;" /><img src="example/step-3.png" width="30%" style="margin: 5px;" />
+</p>
 
 ---
 
