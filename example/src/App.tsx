@@ -2,14 +2,10 @@ import * as React from "react"
 import { StyleSheet, View, Text, Button } from "react-native"
 import LocationSettingsEnabler from "react-native-location-settings-enabler"
 
-const { PRIORITIES, useCheckSettings, requestResolutionSettings } = LocationSettingsEnabler
-const { HIGH_ACCURACY } = PRIORITIES
-
-const config = {
-  priority: HIGH_ACCURACY,
-  alwaysShow: true,
-  needBle: true,
-}
+const {
+  PRIORITIES: { HIGH_ACCURACY },
+  useLocationSettings,
+} = LocationSettingsEnabler
 
 const LocationStatus = (props: { enabled: boolean | undefined }) => (
   <Text style={styles.status}>
@@ -29,10 +25,12 @@ const RequestResolutionSettingsBtn = (props: { onPress: any }) => (
   <Button color="red" title="Request Resolution Location Settings" onPress={props.onPress} />
 )
 
-const requestResolution = () => requestResolutionSettings(config)
-
 const App: React.FunctionComponent<unknown> = () => {
-  const enabled = useCheckSettings(config)
+  const [enabled, requestResolution] = useLocationSettings({
+    priority: HIGH_ACCURACY,
+    alwaysShow: true,
+    needBle: true,
+  })
 
   return (
     <View style={styles.container}>
