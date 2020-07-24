@@ -14,6 +14,8 @@
 
 This package makes it easy for an React Native App to ensure that the Android device&#39;s system settings are properly configured for the app&#39;s location needs. If your app needs to request location, the device needs to enable the appropriate system settings, such as GPS or Wi-Fi scanning. Rather than directly enabling services such as the device&#39;s GPS, your app specifies the required level of accuracy/power consumption, and the device automatically makes the appropriate changes to system settings.
 
+<img src="example/head.png" width="100%" />
+
 ---
 
 ## Installation
@@ -121,6 +123,10 @@ Install and launch example app on the device
 ```sh
 yarn example android
 ```
+
+<img src="example/step-1.png" width="33%" />
+<img src="example/step-2.png" width="33%" />
+<img src="example/step-3.png" width="33%" />
 
 ---
 
