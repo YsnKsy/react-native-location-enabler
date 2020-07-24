@@ -125,7 +125,7 @@ yarn example android
 ```
 
 <p align="center">
-  <img src="example/step-1.png" width="30%" /><img src="example/step-2.png" width="30%" /><img src="example/step-3.png" width="30%" />
+  <img src="example/step-1.png" width="30%" style="margin: 5px;" /><img src="example/step-2.png" width="30%" style="margin: 5px;" /><img src="example/step-3.png" width="30%" style="margin: 5px;" />
 </p>
 
 ---
