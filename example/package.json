@@ -1,6 +1,6 @@
 {
-  "name": "react-native-location-settings-enabler-example",
-  "description": "Example app for react-native-location-settings-enabler",
+  "name": "react-native-location-enabler-example",
+  "description": "Example app for react-native-location-enabler",
   "version": "0.0.1",
   "private": true,
   "scripts": {

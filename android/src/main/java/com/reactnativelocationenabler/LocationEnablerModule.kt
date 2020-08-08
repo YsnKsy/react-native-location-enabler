@@ -1,4 +1,4 @@
-package com.reactnativelocationsettingsenabler
+package com.reactnativelocationenabler
 
 import android.app.Activity
 import android.content.Intent
@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import java.util.*
 
-class LocationSettingsEnablerModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class LocationEnablerModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
   init {
     val activityEventListener = object : BaseActivityEventListener() {
@@ -35,7 +35,7 @@ class LocationSettingsEnablerModule(reactContext: ReactApplicationContext) : Rea
     reactContext.addActivityEventListener(activityEventListener)
   }
 
-  private val TAG = "LocationSettingsEnabler"
+  private val TAG = "LocationEnabler"
   private val REQUEST_TURN_DEVICE_LOCATION_ON = 29
   private val EVENT_NAME = "onChangeLocationSettings"
   private val context: ReactApplicationContext = reactContext

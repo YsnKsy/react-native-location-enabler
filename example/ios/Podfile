@@ -20,8 +20,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'LocationSettingsEnablerExample' do
-  # Pods for LocationSettingsEnablerExample
+target 'LocationEnablerExample' do
+  # Pods for LocationEnablerExample
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -53,7 +53,7 @@ target 'LocationSettingsEnablerExample' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'react-native-location-settings-enabler', :path => '../..'
+  pod 'react-native-location-enabler', :path => '../..'
 
   use_native_modules!
 

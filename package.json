@@ -1,5 +1,5 @@
 {
-  "name": "react-native-location-settings-enabler",
+  "name": "react-native-location-enabler",
   "version": "3.0.1",
   "description": "This package makes it easy for an React Native App to ensure that the android device&#39;s system settings are properly configured for the app&#39;s location needs. If your app needs to request location, the device needs to enable the appropriate system settings, such as GPS or Wi-Fi scanning. Rather than directly enabling services such as the device&#39;s GPS, your app specifies the required level of accuracy/power consumption and desired update interval, and the device automatically makes the appropriate changes to system settings. ",
   "engines": {
@@ -49,14 +49,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:YsnKsy/react-native-location-settings-enabler.git"
+    "url": "git@github.com:YsnKsy/react-native-location-enabler.git"
   },
   "author": "Yassine Kassy <y.kassy@me.com> (https://github.com/YsnKsy)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/YsnKsy/react-native-location-settings-enabler/issues"
+    "url": "https://github.com/YsnKsy/react-native-location-enabler/issues"
   },
-  "homepage": "https://github.com/YsnKsy/react-native-location-settings-enabler#readme",
+  "homepage": "https://github.com/YsnKsy/react-native-location-enabler#readme",
   "devDependencies": {
     "@commitlint/config-conventional": "^9.1.2",
     "@react-native-community/eslint-config": "^2.0.0",
@@ -106,7 +106,7 @@
       "<rootDir>/example"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-native|@react-native-community|react-native-location-settings-enabler)"
+      "node_modules/(?!(jest-)?react-native|react-native|@react-native-community|)"
     ]
   },
   "husky": {
