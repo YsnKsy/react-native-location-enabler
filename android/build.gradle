@@ -1,6 +1,7 @@
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
   def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['LocationEnabler_kotlinVersion']
+  def gradle_version = rootProject.ext.has('gradelVersion') ? rootProject.ext.get('gradelVersion') : project.properties['LocationEnabler_gradelVersion']
 
   repositories {
     google()
@@ -8,7 +9,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.2.1'
+    classpath "com.android.tools.build:gradle:$gradle_version"
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
@@ -33,7 +34,6 @@ android {
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
     versionCode 1
     versionName "1.0"
-
   }
 
   buildTypes {
@@ -126,6 +126,7 @@ repositories {
 
 def kotlin_version = getExtOrDefault('kotlinVersion')
 def kotlin_coroutines_version = getExtOrDefault('kotlinCoroutinesVersion')
+def play_services_location_version = getExtOrDefault('playServicesLocationVersion')
 
 dependencies {
   // noinspection GradleDynamicVersion
@@ -134,5 +135,5 @@ dependencies {
   api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
   api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
   // Google Play Services
-  implementation 'com.google.android.gms:play-services-location:17.0.0'
+  implementation "com.google.android.gms:play-services-location:$play_services_location_version"
 }
