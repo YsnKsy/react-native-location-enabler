@@ -1,4 +1,4 @@
-jest.mock("react-native-location-settings-enabler")
+jest.mock("react-native-location-enabler")
 
 export default {
   PRIORITIES: {

@@ -54,7 +54,7 @@ export type LocationStatus = boolean | undefined
 
 export type LocationSettings = [LocationStatus, () => void]
 
-export interface LocationSettingsEnablerType {
+export interface LocationEnablerType {
   /**
    * Static object contain a list quality of service for location updates.
    * If your application wants high accuracy location it should set prioprity to 'HIGH_ACCURACY'

@@ -1,7 +1,7 @@
-import LocationSettingsEnabler from "react-native-location-settings-enabler"
-jest.mock("react-native-location-settings-enabler")
+import LocationEnabler from "react-native-location-enabler"
+jest.mock("react-native-location-enabler")
 
-describe("Test native module 'react-native-location-settings-enabler'", () => {
+describe("Test native module 'react-native-location-enabler'", () => {
   function listner() {
     // do nothing
   }
@@ -12,8 +12,8 @@ describe("Test native module 'react-native-location-settings-enabler'", () => {
     needBle: false,
   }
 
-  test("[ LocationSettingsEnabler.useLocationSettings ] is a valid hook method", () => {
-    const useLocationSettings = LocationSettingsEnabler.useLocationSettings
+  test("[ LocationEnabler.useLocationSettings ] is a valid hook method", () => {
+    const useLocationSettings = LocationEnabler.useLocationSettings
     expect(useLocationSettings).toBeTruthy()
     const [enabled, requestResolution] = useLocationSettings(options)
     expect(enabled).toBe(Boolean)
@@ -21,32 +21,32 @@ describe("Test native module 'react-native-location-settings-enabler'", () => {
     expect(requestResolution()).toBeUndefined()
   })
 
-  test("[ LocationSettingsEnabler.addListener ] is a valid function subscriber", () => {
-    const addListener = LocationSettingsEnabler.addListener
+  test("[ LocationEnabler.addListener ] is a valid function subscriber", () => {
+    const addListener = LocationEnabler.addListener
     expect(addListener).toBeTruthy()
     expect(addListener(listner).remove).toBeTruthy()
   })
 
-  test("[ LocationSettingsEnabler.once ] is a valid function subscriber", () => {
-    const once = LocationSettingsEnabler.once
+  test("[ LocationEnabler.once ] is a valid function subscriber", () => {
+    const once = LocationEnabler.once
     expect(once).toBeTruthy()
     expect(once(listner).remove).toBeTruthy()
   })
 
-  test("[ LocationSettingsEnabler.checkSettings ] is a valid function ", () => {
-    const checkSettings = LocationSettingsEnabler.checkSettings
+  test("[ LocationEnabler.checkSettings ] is a valid function ", () => {
+    const checkSettings = LocationEnabler.checkSettings
     expect(checkSettings).toBeTruthy()
     expect(checkSettings(options)).toBeUndefined()
   })
 
-  test("[ LocationSettingsEnabler.requestResolutionSettings ] is a valid function", () => {
-    const requestResolutionSettings = LocationSettingsEnabler.requestResolutionSettings
+  test("[ LocationEnabler.requestResolutionSettings ] is a valid function", () => {
+    const requestResolutionSettings = LocationEnabler.requestResolutionSettings
     expect(requestResolutionSettings).toBeTruthy()
     expect(requestResolutionSettings(options)).toBeUndefined()
   })
 
-  test("[ LocationSettingsEnabler.PRIORITIES ] is a valid priorities object", () => {
-    const PRIORITIES = LocationSettingsEnabler.PRIORITIES
+  test("[ LocationEnabler.PRIORITIES ] is a valid priorities object", () => {
+    const PRIORITIES = LocationEnabler.PRIORITIES
     expect(PRIORITIES).toBeTruthy()
     expect(PRIORITIES).toEqual({
       HIGH_ACCURACY: 100,

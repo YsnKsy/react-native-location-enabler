@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  LocationSettingsEnablerExample
+//  LocationEnablerExample
 //
 
 import Foundation

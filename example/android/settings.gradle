@@ -1,6 +1,6 @@
-rootProject.name = 'LocationSettingsEnablerExample'
+rootProject.name = 'LocationEnablerExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 
-include ':reactnativelocationsettingsenabler'
-project(':reactnativelocationsettingsenabler').projectDir = new File(rootProject.projectDir, '../../android')
+include ':reactnativelocationenabler'
+project(':reactnativelocationenabler').projectDir = new File(rootProject.projectDir, '../../android')
