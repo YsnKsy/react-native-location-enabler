@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { NativeModules, NativeEventEmitter } from "react-native"
 import type {
   LocationEnablerType,
@@ -26,15 +26,21 @@ LocationEnabler.useLocationSettings = (
   settings: Config,
   initial?: LocationStatus,
 ): LocationSettings => {
+
   const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined)
-  useEffect(() => {
-    const listner = LocationEnabler.addListener(({ locationEnabled }) =>
-      setEnabled(locationEnabled),
-    )
+
+  const callback = useCallback(() => {
+    const listner = LocationEnabler.addListener(({ locationEnabled }) => setEnabled(locationEnabled))
     LocationEnabler.checkSettings(settings)
     if (enabled) listner.remove()
-    return () => listner.remove()
+    else return listner
   }, [enabled])
+
+  useEffect(() => {
+    const listner = callback()
+    return () => listner?.remove()
+  }, [callback])
+
   return [enabled, () => LocationEnabler.requestResolutionSettings(settings)]
 }
 

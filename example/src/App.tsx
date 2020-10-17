@@ -25,7 +25,7 @@ const RequestResolutionSettingsBtn = (props: { onPress: any }) => (
   <Button color="red" title="Request Resolution Location Settings" onPress={props.onPress} />
 )
 
-const App: React.FunctionComponent<unknown> = () => {
+const App: React.FunctionComponent = () => {
   const [enabled, requestResolution] = useLocationSettings({
     priority: HIGH_ACCURACY,
     alwaysShow: true,
