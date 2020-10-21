@@ -26,11 +26,12 @@ LocationEnabler.useLocationSettings = (
   settings: Config,
   initial?: LocationStatus,
 ): LocationSettings => {
-
   const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined)
 
   const callback = useCallback(() => {
-    const listner = LocationEnabler.addListener(({ locationEnabled }) => setEnabled(locationEnabled))
+    const listner = LocationEnabler.addListener(({ locationEnabled }) =>
+      setEnabled(locationEnabled),
+    )
     LocationEnabler.checkSettings(settings)
     if (enabled) listner.remove()
     else return listner
@@ -41,7 +42,12 @@ LocationEnabler.useLocationSettings = (
     return () => listner?.remove()
   }, [callback])
 
-  return [enabled, () => LocationEnabler.requestResolutionSettings(settings)]
+  const requestResolutionSettings = useCallback(
+    () => LocationEnabler.requestResolutionSettings(settings),
+    [settings],
+  )
+
+  return [enabled, requestResolutionSettings]
 }
 
 export default LocationEnabler as LocationEnablerType
