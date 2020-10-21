@@ -42,8 +42,11 @@ LocationEnabler.useLocationSettings = (
     return () => listner?.remove()
   }, [callback])
 
-  const requestResolutionSettings = useCallback(() => LocationEnabler.requestResolutionSettings(settings), [settings])
-  
+  const requestResolutionSettings = useCallback(
+    () => LocationEnabler.requestResolutionSettings(settings),
+    [settings],
+  )
+
   return [enabled, requestResolutionSettings]
 }
 
