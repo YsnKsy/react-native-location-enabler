@@ -1,6 +1,6 @@
 {
   "name": "react-native-location-enabler",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "This package makes it easy for an React Native App to ensure that the android device&#39;s system settings are properly configured for the app&#39;s location needs. If your app needs to request location, the device needs to enable the appropriate system settings, such as GPS or Wi-Fi scanning. Rather than directly enabling services such as the device&#39;s GPS, your app specifies the required level of accuracy/power consumption and desired update interval, and the device automatically makes the appropriate changes to system settings. ",
   "engines": {
     "node": ">=v12.0.0"
