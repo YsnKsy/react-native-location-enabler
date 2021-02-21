@@ -21,15 +21,14 @@ class LocationEnablerModule(reactContext: ReactApplicationContext) : ReactContex
 
   init {
     val activityEventListener = object : BaseActivityEventListener() {
-      override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, intent: Intent) {
-        if (requestCode == REQUEST_TURN_DEVICE_LOCATION_ON) {
-          val result = Arguments.createMap()
-          when (resultCode) {
-            -1 -> result.putBoolean("locationEnabled", true)
-            else -> result.putBoolean("locationEnabled", false)
-          }
-          sendEvent(EVENT_NAME, result)
+      override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, @Nullable intent: Intent?) {
+        if (intent !== null && requestCode != REQUEST_TURN_DEVICE_LOCATION_ON) return
+        val result = Arguments.createMap()
+        when (resultCode) {
+          -1 -> result.putBoolean("locationEnabled", true)
+          else -> result.putBoolean("locationEnabled", false)
         }
+        sendEvent(EVENT_NAME, result)
       }
     }
     reactContext.addActivityEventListener(activityEventListener)
@@ -73,7 +72,7 @@ class LocationEnablerModule(reactContext: ReactApplicationContext) : ReactContex
   }
 
   private fun locationSettingsRequestBuilder(priority: Int, alwaysShow: Boolean, needBle: Boolean): Task<LocationSettingsResponse> {
-    val locationRequest = LocationRequest.create().apply { priority }
+    val locationRequest = LocationRequest.create().setPriority(priority)
     val build = LocationSettingsRequest.Builder()
       .setAlwaysShow(alwaysShow)
       .setNeedBle(needBle)
