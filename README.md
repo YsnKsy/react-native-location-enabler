@@ -110,7 +110,7 @@ git clone https://github.com/YsnKsy/react-native-location-enabler.git && cd reac
 Install npm dependencies
 
 ```sh
-yarn example
+yarn
 ```
 
 Start Metro ( javascript bundler )
