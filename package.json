@@ -60,7 +60,7 @@
   },
   "homepage": "https://github.com/YsnKsy/react-native-location-enabler#readme",
   "devDependencies": {
-    "@commitlint/config-conventional": "^9.1.2",
+    "@commitlint/config-conventional": "^12.1.1",
     "@react-native-community/eslint-config": "^2.0.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
