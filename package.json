@@ -92,7 +92,7 @@
     "patch-package": "^6.2.2",
     "postinstall-prepare": "^2.0.0",
     "prettier": "^2.0.5",
-    "react": "16.13.1",
+    "react": "17.0.2",
     "react-native": "0.63.2",
     "react-native-builder-bob": "^0.18.1",
     "semantic-release": "^17.2.3",
