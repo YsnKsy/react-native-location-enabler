@@ -10,7 +10,6 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-
 import com.reactnativelocationenabler.LocationEnablerPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -29,7 +28,6 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for LocationEnablerExample:
           // packages.add(new MyReactNativePackage());
           packages.add(new LocationEnablerPackage());
-
           return packages;
         }
 

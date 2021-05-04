@@ -31,12 +31,12 @@ yarn add react-native-location-enabler
 ### Example using Hook (React Hooks API) :
 
 ```js
-import LocationEnabler from "react-native-location-enabler"
+import LocationEnabler from 'react-native-location-enabler';
 
 const {
   PRIORITIES: { HIGH_ACCURACY },
   useLocationSettings,
-} = LocationEnabler
+} = LocationEnabler;
 
 // React Component
 const App = () => {
@@ -46,17 +46,20 @@ const App = () => {
       alwaysShow: true, // default false
       needBle: true, // default false
     },
-    false /* optional: default undefined */,
-  )
+    false /* optional: default undefined */
+  );
 
   return (
     <View>
       {!enabled && (
-        <Button onPress={requestResolution} title="Request Resolution Location Settings" />
+        <Button
+          onPress={requestResolution}
+          title="Request Resolution Location Settings"
+        />
       )}
     </View>
-  )
-}
+  );
+};
 ```
 
 ---
@@ -138,9 +141,14 @@ yarn example android
 > `PRIORITIES`
 
 ```js
-import LocationEnabler from "react-native-location-enabler"
+import LocationEnabler from 'react-native-location-enabler';
 
-const { HIGH_ACCURACY, BALANCED_POWER_ACCURACY, LOW_POWER, NO_POWER } = LocationEnabler.PRIORITIES
+const {
+  HIGH_ACCURACY,
+  BALANCED_POWER_ACCURACY,
+  LOW_POWER,
+  NO_POWER,
+} = LocationEnabler.PRIORITIES;
 ```
 
 Static object contain a list quality of service for location updates. If your application wants high accuracy location it should set prioprity to 'HIGH_ACCURACY'. If you want negligible power impact, but to still receive location updates when available, then set priority to 'NO_POWER'.
@@ -152,24 +160,24 @@ Static object contain a list quality of service for location updates. If your ap
 > ### `useLocationSettings({ priority, alwaysShow, needBle }, initialStatus?)`
 
 ```js
-import LocationEnabler from "react-native-location-enabler"
+import LocationEnabler from 'react-native-location-enabler';
 
 const {
   useLocationSettings,
   PRIORITIES: { HIGH_ACCURACY },
-} = LocationEnabler
+} = LocationEnabler;
 
 const [enabled, requestResolution] = useLocationSettings({
   priority: HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
   alwaysShow: true, // optional: default false
   needBle: true, // optional: default false
-})
+});
 
-console.log(`Location are ${enabled ? "enabled" : "disabled"}`)
+console.log(`Location are ${enabled ? 'enabled' : 'disabled'}`);
 
 // ...
 if (!enabled) {
-  requestResolution()
+  requestResolution();
 }
 ```
 
@@ -180,18 +188,18 @@ Hook let you check the user's device location status 'on' / 'off' and method let
 > ### `checkSettings({ priority, alwaysShow, needBle })`
 
 ```js
-import LocationEnabler from "react-native-location-enabler"
+import LocationEnabler from 'react-native-location-enabler';
 
 const {
   checkSettings,
   PRIORITIES: { HIGH_ACCURACY },
-} = LocationEnabler
+} = LocationEnabler;
 
 checkSettings({
   priority: HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
   alwaysShow: true, // optional: default false
   needBle: true, // optional: default false
-})
+});
 ```
 
 Checking if the user's device location is turned on / off.
@@ -201,18 +209,18 @@ Checking if the user's device location is turned on / off.
 > ### `requestResolutionSettings({ priority, alwaysShow, needBle })`
 
 ```js
-import LocationEnabler from "react-native-location-enabler"
+import LocationEnabler from 'react-native-location-enabler';
 
 const {
   requestResolutionSettings,
   PRIORITIES: { HIGH_ACCURACY },
-} = LocationEnabler
+} = LocationEnabler;
 
 requestResolutionSettings({
   priority: HIGH_ACCURACY, // optional: default BALANCED_POWER_ACCURACY
   alwaysShow: true, // optional: default false
   needBle: true, // optional: default false
-})
+});
 ```
 
 Display an activity where they can turn location 'on' using a location request.
@@ -222,22 +230,22 @@ Display an activity where they can turn location 'on' using a location request.
 > ### `addListener(callback, context?)`
 
 ```js
-import LocationEnabler from "react-native-location-enabler"
+import LocationEnabler from 'react-native-location-enabler';
 
-let listener = null
+let listener = null;
 
 function cb(result) {
-  const { locationEnabled } = result
+  const { locationEnabled } = result;
 
-  console.log(`Location are ${locationEnabled ? "enabled" : "disabled"}`)
+  console.log(`Location are ${locationEnabled ? 'enabled' : 'disabled'}`);
 
   if (listener !== null) {
     // remove listener when you finish
-    listener.remove()
+    listener.remove();
   }
 }
 
-listener = LocationEnabler.addListener(cb)
+listener = LocationEnabler.addListener(cb);
 ```
 
 Adds a listener to be invoked when onChangeLocationSettings are emitted. An optional calling context may be provided. The data arguments emitted will be passed to the listener function.
