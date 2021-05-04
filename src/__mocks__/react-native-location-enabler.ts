@@ -1,4 +1,4 @@
-jest.mock("react-native-location-enabler")
+jest.mock('react-native-location-enabler');
 
 export default {
   PRIORITIES: {
@@ -11,9 +11,9 @@ export default {
   checkSettings: jest.fn(),
   requestResolutionSettings: jest.fn(),
   addListener: jest.fn(() => {
-    return { remove: jest.fn() }
+    return { remove: jest.fn() };
   }),
   once: jest.fn(() => {
-    return { remove: jest.fn() }
+    return { remove: jest.fn() };
   }),
-}
+};

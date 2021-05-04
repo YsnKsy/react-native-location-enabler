@@ -59,5 +59,8 @@ jobs:
     - name: Run Jest Unit Tests
       run: yarn test
 
+    - name: Compiled files
+      run: yarn prepare
+
     - name: New release
       run: NPM_TOKEN=${{ secrets.NPM_TOKEN }} GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} yarn release

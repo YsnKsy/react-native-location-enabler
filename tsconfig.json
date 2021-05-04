@@ -1,22 +1,18 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "react-native-location-enabler": ["./src/index"]
     },
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react-native",
+    "jsx": "react",
     "lib": ["esnext"],
     "module": "esnext",
     "moduleResolution": "node",
-    "noImplicitThis": true,
-    "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
@@ -26,8 +22,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "sourceMap": true,
     "target": "esnext"
-  },
-  "exclude": ["node_modules"]
+  }
 }
