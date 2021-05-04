@@ -36,3 +36,6 @@ jobs:
 
     - name: Run Jest Unit Tests
       run: yarn test
+
+    - name: Compiled files
+      run: yarn prepare
