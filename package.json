@@ -98,7 +98,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn format && yarn lint && yarn typescript"
+      "pre-commit": "yarn format && yarn lint && yarn typescript && yarn prepare"
     }
   },
   "commitlint": {
