@@ -1981,15 +1981,15 @@
     p-retry "^4.0.0"
     url-join "^4.0.0"
 
-"@semantic-release/npm@^7.0.0", "@semantic-release/npm@^7.1.1":
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/@semantic-release/npm/-/npm-7.1.1.tgz#90a0970f12b963fa846e5cdf896e6c7d996c1a64"
-  integrity sha512-zTYAno1j49XiH+uAVCY47dKOJAagA/MaJb26FFIfNujNHw3GYXk3ygsFa5CSa55xsO0qEMLcsDX3f3ByCg6nZw==
+"@semantic-release/npm@^7.0.0", "@semantic-release/npm@^7.1.3":
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/@semantic-release/npm/-/npm-7.1.3.tgz#1d64c41ff31b100299029c766ecc4d1f03aa5f5b"
+  integrity sha512-x52kQ/jR09WjuWdaTEHgQCvZYMOTx68WnS+TZ4fya5ZAJw4oRtJETtrvUw10FdfM28d/keInQdc66R1Gw5+OEQ==
   dependencies:
     "@semantic-release/error" "^2.2.0"
     aggregate-error "^3.0.0"
     execa "^5.0.0"
-    fs-extra "^9.0.0"
+    fs-extra "^10.0.0"
     lodash "^4.17.15"
     nerf-dart "^1.0.0"
     normalize-url "^6.0.0"
