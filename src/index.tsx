@@ -14,11 +14,13 @@ const EVENT_NAME = 'onChangeLocationSettings';
 // Override
 const locationEnabler = new NativeEventEmitter(LocationEnabler);
 
+// Do not create NativeEventEmitter listeners if the platform is iOS
 LocationEnabler.addListener = (listener: Listener, context?: any) =>
   Platform.OS === 'android'
     ? locationEnabler.addListener(EVENT_NAME, listener, context)
     : () => null;
 
+// Do not create NativeEventEmitter listeners if the platform is iOS
 LocationEnabler.once = (listener: Listener, context?: any) =>
   Platform.OS === 'android'
     ? locationEnabler.once(EVENT_NAME, listener, context)
@@ -33,14 +35,10 @@ LocationEnabler.useLocationSettings = (
   const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined);
 
   const callback = useCallback(() => {
-    /* Don't add a listener if the platform is iOS */
-    const listner =
-      Platform.OS === 'android'
-        ? LocationEnabler.addListener(
-            ({ locationEnabled }: { locationEnabled: boolean }) =>
-              setEnabled(locationEnabled)
-          )
-        : null;
+    const listner = LocationEnabler.addListener(
+      ({ locationEnabled }: { locationEnabled: boolean }) =>
+        setEnabled(locationEnabled)
+    );
     LocationEnabler.checkSettings(settings);
     if (enabled) listner.remove();
     else return listner;
