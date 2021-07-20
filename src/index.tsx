@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { NativeModules, NativeEventEmitter } from 'react-native';
+import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
 import type {
   LocationEnablerType,
   Listener,
@@ -26,29 +26,37 @@ LocationEnabler.useLocationSettings = (
   settings: Config,
   initial?: LocationStatus
 ): LocationSettings => {
-  const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined);
+  if (Platform.OS === 'android') {
+    const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined);
 
-  const callback = useCallback(() => {
-    const listner = LocationEnabler.addListener(
-      ({ locationEnabled }: { locationEnabled: boolean }) =>
-        setEnabled(locationEnabled)
+    const callback = useCallback(() => {
+      const listner = LocationEnabler.addListener(
+        ({ locationEnabled }: { locationEnabled: boolean }) =>
+          setEnabled(locationEnabled)
+      );
+      LocationEnabler.checkSettings(settings);
+      if (enabled) listner.remove();
+      else return listner;
+    }, [enabled, settings]);
+
+    useEffect(() => {
+      const listner = callback();
+      return () => listner?.remove();
+    }, [callback]);
+
+    const requestResolutionSettings = useCallback(
+      () => LocationEnabler.requestResolutionSettings(settings),
+      [settings]
     );
-    LocationEnabler.checkSettings(settings);
-    if (enabled) listner.remove();
-    else return listner;
-  }, [enabled, settings]);
 
-  useEffect(() => {
-    const listner = callback();
-    return () => listner?.remove();
-  }, [callback]);
-
-  const requestResolutionSettings = useCallback(
-    () => LocationEnabler.requestResolutionSettings(settings),
-    [settings]
-  );
-
-  return [enabled, requestResolutionSettings];
+    return [enabled, requestResolutionSettings];
+  } else {
+    /*
+      On iOS we do not want an NativeEventEmitter to prevent using any resources
+      instead we just return undefined and a void function.
+    */
+    return [undefined, () => ({})];
+  }
 };
 
 export default LocationEnabler as LocationEnablerType;

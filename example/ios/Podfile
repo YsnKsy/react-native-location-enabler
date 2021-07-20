@@ -8,6 +8,8 @@ target 'LocationEnablerExample' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-location-enabler', :path => '../../react-native-location-enabler.podspec'
+
   target 'LocationEnablerExampleTests' do
     inherit! :complete
     # Pods for testing
