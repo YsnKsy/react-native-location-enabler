@@ -15,10 +15,14 @@ const EVENT_NAME = 'onChangeLocationSettings';
 const locationEnabler = new NativeEventEmitter(LocationEnabler);
 
 LocationEnabler.addListener = (listener: Listener, context?: any) =>
-  locationEnabler.addListener(EVENT_NAME, listener, context);
+  Platform.OS === 'android' ?
+    locationEnabler.addListener(EVENT_NAME, listener, context)
+    : () => null;
 
 LocationEnabler.once = (listener: Listener, context?: any) =>
-  locationEnabler.once(EVENT_NAME, listener, context);
+  Platform.OS === 'android' ?
+    locationEnabler.once(EVENT_NAME, listener, context)
+    : () => null;
 
 LocationEnabler.PRIORITIES = LocationEnabler.getConstants();
 

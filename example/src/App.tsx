@@ -4,8 +4,6 @@ import LocationEnabler from 'react-native-location-enabler';
 
 const {
   PRIORITIES: { HIGH_ACCURACY },
-  checkSettings,
-  requestResolutionSettings,
   useLocationSettings,
 } = LocationEnabler;
 
@@ -23,43 +21,25 @@ const LocationStatus = (props: { enabled: boolean | undefined }) => (
   </Text>
 );
 
+const RequestResolutionSettingsBtn = (props: { onPress: any }) => (
+  <Button
+    color="red"
+    title="Request Resolution Location Settings"
+    onPress={props.onPress}
+  />
+);
+
 const App: React.FunctionComponent = () => {
-  const LocationSettings = {
+  const [enabled, requestResolution] = useLocationSettings({
     priority: HIGH_ACCURACY,
     alwaysShow: true,
     needBle: true,
-  };
-  const [debugging, setDebugging] = React.useState(false);
-  const [enabled, requestResolution] = useLocationSettings(LocationSettings);
+  });
 
-  if (debugging) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.status}>{"Debugging"}</Text>
-        <Button onPress={() => checkSettings(LocationSettings)} color="red"
-          title="checkSettings()"
-        />
-        <Button onPress={() => requestResolutionSettings(LocationSettings)}
-          color="red" title="requestResolutionSettings()"
-        />
-        <View style={styles.spacing}></View>
-        <Button onPress={() => setDebugging(!debugging)} color="orange"
-          title="Stop debugging"
-        />
-      </View>
-    )
-  }
   return (
     <View style={styles.container}>
       <LocationStatus enabled={enabled} />
-      {!enabled && <Button onPress={requestResolution} color="red"
-        title="Request Resolution Location Settings"
-      />
-      }
-      <View style={styles.spacing}></View>
-      <Button onPress={() => setDebugging(!debugging)} color="orange"
-        title="Debug methods"
-      />
+      {!enabled && <RequestResolutionSettingsBtn onPress={requestResolution} />}
     </View>
   );
 };
@@ -82,9 +62,6 @@ const styles = StyleSheet.create({
   enabled: {
     color: colors.green,
   },
-  spacing: {
-    height: 50,
-  },
   status: {
     fontSize: 20,
     margin: 20,
@@ -92,7 +69,6 @@ const styles = StyleSheet.create({
   undefined: {
     color: colors.blue,
   },
-
 });
 
 export default App;
