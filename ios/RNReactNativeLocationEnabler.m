@@ -1,10 +1,10 @@
-#import "LocationEnabler.h"
+#import "RNReactNativeLocationEnabler.h"
 #import <React/RCTBridgeModule.h>
 #import <React/RCTLog.h>
 
-@implementation LocationEnabler : NSObject
+@implementation RNReactNativeLocationEnabler : NSObject
 
-RCT_EXPORT_MODULE();
+RCT_EXPORT_MODULE(LocationEnabler);
 
 @synthesize bridge = _bridge;
 

@@ -4,6 +4,6 @@
 #import <React/RCTBridgeModule.h>
 #endif
 
-@interface LocationEnabler : NSObject <RCTBridgeModule>
+@interface RNReactNativeLocationEnabler : NSObject <RCTBridgeModule>
 
 @end

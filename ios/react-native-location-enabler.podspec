@@ -16,11 +16,11 @@ Pod::Spec.new do |s|
                          DESC
   
     s.homepage         = 'https://github.com/Jurpp/react-native-location-enabler'
-    s.license          = { :type => 'MIT', :file => 'LICENSE' }
+    s.license          = { :type => 'MIT', :file => '../LICENSE' }
     s.author           = { 'Jurpp' => 'jurbruinink@protonmail.com' }
     s.source           = { :git => 'https://github.com/Jurpp/react-native-location-enabler.git', :tag => s.version.to_s }
   
     s.ios.deployment_target = '9.0'
     s.dependency "React"
-    s.source_files = 'ios/**/*.{h,m}'
+    s.source_files = '**/*.{h,m}'
   end
