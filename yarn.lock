@@ -9037,10 +9037,10 @@ plugin-error@^0.1.2:
     arr-union "^2.0.1"
     extend-shallow "^1.1.2"
 
-pod-install@^0.1.22:
-  version "0.1.22"
-  resolved "https://registry.yarnpkg.com/pod-install/-/pod-install-0.1.22.tgz#d9a53ae0ce26df4c1e89f81a744658c7057522e5"
-  integrity sha512-Rq62AZ+VK+2K7Si8bkSMECNXrnSAtbpbV4z8Hz8M0S4t+9Ag8vPTG9V/mfphAHPAas7OfbIjP3zOq2MeMpFadw==
+pod-install@^0.1.27:
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/pod-install/-/pod-install-0.1.27.tgz#f0e777382ab2b2673d5d0924fa648bab92eb3bd6"
+  integrity sha512-t1bT52pqZq1SumvdVFqdsRAKUjFqRpoo3pIyditSpztV0nrVIqz5e5vDPxh1H1fH3GcgJ2ZqwkuKaFYnZXYjnQ==
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
