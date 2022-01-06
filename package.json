@@ -11,6 +11,7 @@
     "src",
     "lib",
     "android",
+    "ios",
     "cpp",
     "!lib/typescript/example",
     "!android/build",
