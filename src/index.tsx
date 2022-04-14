@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { NativeModules, NativeEventEmitter } from 'react-native';
+import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
 import type {
   LocationEnablerType,
   Listener,
@@ -15,7 +15,7 @@ const EVENT_NAME = 'onChangeLocationSettings';
 const locationEnabler = new NativeEventEmitter(LocationEnabler);
 
 LocationEnabler.addListener = (listener: Listener, context?: any) =>
-  locationEnabler.addListener(EVENT_NAME, listener, context);
+  Platform.OS === 'android' ? locationEnabler.addListener(EVENT_NAME, listener, context) : () => {};
 
 LocationEnabler.once = (listener: Listener, context?: any) =>
   locationEnabler.once(EVENT_NAME, listener, context);
