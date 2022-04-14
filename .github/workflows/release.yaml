@@ -52,9 +52,6 @@ jobs:
 
     - name: Lint files
       run: yarn lint
-    
-    - name: Typecheck files
-      run: yarn typescript
 
     - name: Run Jest Unit Tests
       run: yarn test
