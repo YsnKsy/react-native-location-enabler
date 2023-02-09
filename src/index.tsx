@@ -10,47 +10,47 @@ import type {
 
 const { LocationEnabler } = NativeModules;
 const EVENT_NAME = 'onChangeLocationSettings';
+if(Platform.OS === 'android'){
+  // Override
+  const locationEnabler = new NativeEventEmitter(LocationEnabler);
 
-// Override
-const locationEnabler = new NativeEventEmitter(LocationEnabler);
+  LocationEnabler.addListener = (listener: Listener, context?: any) =>
+    Platform.OS === 'android'
+      ? locationEnabler.addListener(EVENT_NAME, listener, context)
+      : () => {};
 
-LocationEnabler.addListener = (listener: Listener, context?: any) =>
-  Platform.OS === 'android'
-    ? locationEnabler.addListener(EVENT_NAME, listener, context)
-    : () => {};
+  LocationEnabler.once = (listener: Listener, context?: any) =>
+    locationEnabler.once(EVENT_NAME, listener, context);
 
-LocationEnabler.once = (listener: Listener, context?: any) =>
-  locationEnabler.once(EVENT_NAME, listener, context);
+  LocationEnabler.PRIORITIES = LocationEnabler.getConstants();
 
-LocationEnabler.PRIORITIES = LocationEnabler.getConstants();
+  LocationEnabler.useLocationSettings = (
+    settings: Config,
+    initial?: LocationStatus
+  ): LocationSettings => {
+    const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined);
 
-LocationEnabler.useLocationSettings = (
-  settings: Config,
-  initial?: LocationStatus
-): LocationSettings => {
-  const [enabled, setEnabled] = useState<LocationStatus>(initial || undefined);
+    const callback = useCallback(() => {
+      const listner = LocationEnabler.addListener(
+        ({ locationEnabled }: { locationEnabled: boolean }) =>
+          setEnabled(locationEnabled)
+      );
+      LocationEnabler.checkSettings(settings);
+      if (enabled) listner.remove();
+      else return listner;
+    }, [enabled, settings]);
 
-  const callback = useCallback(() => {
-    const listner = LocationEnabler.addListener(
-      ({ locationEnabled }: { locationEnabled: boolean }) =>
-        setEnabled(locationEnabled)
+    useEffect(() => {
+      const listner = callback();
+      return () => listner?.remove();
+    }, [callback]);
+
+    const requestResolutionSettings = useCallback(
+      () => LocationEnabler.requestResolutionSettings(settings),
+      [settings]
     );
-    LocationEnabler.checkSettings(settings);
-    if (enabled) listner.remove();
-    else return listner;
-  }, [enabled, settings]);
 
-  useEffect(() => {
-    const listner = callback();
-    return () => listner?.remove();
-  }, [callback]);
-
-  const requestResolutionSettings = useCallback(
-    () => LocationEnabler.requestResolutionSettings(settings),
-    [settings]
-  );
-
-  return [enabled, requestResolutionSettings];
-};
-
+    return [enabled, requestResolutionSettings];
+  };
+}
 export default LocationEnabler as LocationEnablerType;
